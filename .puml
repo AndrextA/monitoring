@@ -1,0 +1,32 @@
+@startuml modeloDelDominio
+
+class Sistema_Monitoring
+class Usuario
+class Permisos
+class Servicios
+class Metrica
+class Recursos
+class Rendimiento
+class Custom
+class Log_Sistema
+class Log_Servicio
+class Estado
+
+
+Sistema_Monitoring -> Usuario : "tiene"
+Usuario -> Permisos : "tiene"
+Usuario --> Sistema_Monitoring : "usa"
+Sistema_Monitoring --> Servicios : "monitoriza"
+Sistema_Monitoring --> Log_Sistema : "genera"
+Sistema_Monitoring --> Metrica : "obtiene"
+
+Servicios --> Metrica : "genera"
+Servicios --> Log_Servicio : "genera"
+
+Metrica <|-- Recursos
+Metrica <|-- Rendimiento
+Metrica <|-- Custom
+
+Custom --> Estado : "tiene"
+
+@enduml
