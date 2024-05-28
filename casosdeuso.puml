@@ -1,26 +1,67 @@
 @startuml diagramaCasosDeUso
+left to right direction
 
 actor Administrador
 actor Usuario
 
-usecase "Iniciar Sesión" as UC1
-usecase "Ver Métricas de Servicios" as UC2
-usecase "Ver Logs de Servicios" as UC3
-usecase "Configurar Alertas" as UC4
-usecase "Personalizar Dashboard" as UC5
-usecase "Crear Usuario" as UC6
-usecase "Asignar Roles" as UC7
-usecase "Eliminar Usuario" as UC8
-usecase "Actualizar Usuario" as UC9
+package "Gestión de Sesiones" as login {
+  usecase "Iniciar Sesión" as IniciarSesion
+  usecase "Verificar Usuario" as VerificarUsuario
+  usecase "Cerrar Sesión" as CerrarSesion
+}
 
-Usuario --> UC1
-Usuario --> UC2
-Usuario --> UC3
-Usuario --> UC4
-Usuario --> UC5
-Administrador --> UC6
-Administrador --> UC7
-Administrador --> UC8
-Administrador --> UC9
+Usuario --> IniciarSesion
+IniciarSesion --> VerificarUsuario : <<include>>
+IniciarSesion <|-- CerrarSesion : <<extends>>
 
+note right of VerificarUsuario
+  El sistema verifica las credenciales 
+  del usuario para permitir el acceso.
+end note
+
+note left of IniciarSesion
+  El usuario ingresa sus credenciales para 
+  iniciar sesión en el sistema.
+end note
+
+note right of CerrarSesion
+  El usuario puede cerrar su sesión sólo 
+  después de haber iniciado sesión correctamente.
+end note
+
+package "Métricas y Logs" {
+    usecase "Ver Logs de Servicios" as UC3
+    usecase "Generar Métrica" as UC10
+    usecase "Obtener Métrica" as UC11
+    usecase "Ver Métricas de Servicios" as UC2
+
+    UC2 <|-- UC11 : «include»
+    UC11 <|-- UC10 : «include»
+    UC3 <|-- UC10 : «extend»
+}
+
+package "Configuración" {
+    usecase "Configurar Alertas" as UC4
+    usecase "Personalizar Dashboard" as UC5
+}
+
+package "Gestión de Usuarios" {
+    usecase "Crear Usuario" as UC6
+    usecase "Asignar Roles" as UC7
+    usecase "Eliminar Usuario" as UC8
+    usecase "Actualizar Usuario" as UC9
+}
+
+Usuario -- UC2
+Usuario -- UC3
+Usuario -- UC4
+Usuario -- UC5
+
+Administrador -- UC6
+Administrador -- UC7
+Administrador -- UC8
+Administrador -- UC9
+
+/'definir, priorizar, paquetes
+'/
 @enduml

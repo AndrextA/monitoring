@@ -1,4 +1,17 @@
-# Base del Proyecto de Monitorización
+Diagrama de modelo del dominio
+
+![image](svg\modelo_del_dominio.svg)
+
+Diagrama de casos de uso
+
+![image](svg\casos_de_uso.svg)
+
+
+Estructura de carpetas
+
+
+
+<!-- # Base del Proyecto de Monitorización
 
 ## 1. Generar la Base del Proyecto
 
@@ -118,3 +131,4 @@ Se configurarán entornos de desarrollo local y de prueba, junto con pipelines d
 
 ## Conclusión
 El desarrollo de este sistema de monitorización no solo mejorará la eficiencia y estabilidad de los servicios tecnológicos, sino que también proporcionará una herramienta educativa valiosa, enseñando a los estudiantes sobre la importancia y la implementación de la monitorización en entornos de producción real.
+ -->

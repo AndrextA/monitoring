@@ -1,0 +1,30 @@
+@startuml casosdeuso
+left to right direction
+actor Usuario
+
+package "Gestión de Sesiones" as login {
+  usecase "Iniciar Sesión" as IniciarSesion
+  usecase "Verificar Usuario" as VerificarUsuario
+  usecase "Cerrar Sesión" as CerrarSesion
+}
+
+Usuario --> IniciarSesion
+IniciarSesion --> VerificarUsuario : <<include>>
+IniciarSesion <|-- CerrarSesion : <<extends>>
+
+note right of VerificarUsuario
+  El sistema verifica las credenciales 
+  del usuario para permitir el acceso.
+end note
+
+note left of IniciarSesion
+  El usuario ingresa sus credenciales para 
+  iniciar sesión en el sistema.
+end note
+
+note right of CerrarSesion
+  El usuario puede cerrar su sesión sólo 
+  después de haber iniciado sesión correctamente.
+end note
+
+@enduml
